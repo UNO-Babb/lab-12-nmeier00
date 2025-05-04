@@ -1,44 +1,72 @@
-Name:
+Name: Nick Meier 
 
 Number of elements:
 
 Bubble Sort
-Sorted:
-Reversed:
-Random:
+Sorted: 2.47902 seconds
+Reversed: 5.55474 seconds
+Random: 4.48099 seconds
 
 Bubble Sort Early Exit
-Sorted:
-Reversed:
-Random:
+Sorted: 0.00054 seconds
+Reversed: 5.75653 seconds
+Random: 4.66246 seconds
 
 Selection Sort
-Sorted:
-Reversed:
-Random:
+Sorted: 2.02016 seconds
+Reversed: 1.93276 seconds
+Random: 1.92210 seconds
 
 Insertion Sort
-Sorted:
-Reversed:
-Random:
+Sorted: 0.00092 seconds
+Reversed: 3.73712 seconds
+Random: 1.98367 seconds
 
 Merge Sort
-Sorted:
-Reversed:
-Random:
+Sorted: 0.01798 seconds
+Reversed: 0.01708 seconds
+Random: 0.02020 seconds
 
 Questions to answer:
 1) What was the worst case scenario for any sorting technique?
-
+    - The worst case scenario was bubbleSortEarlyExit Reversed list.
+    - It was about the same as normal bubblesort for reversed list. I think the reason for this is that for the reversed list,
+    the largest number is at the start. To get this to the back of the list, the bubble sort programs have to switch its place one
+    time per pass over the course of 10,000 passes.
+    -I think the early exit took slightly longer because it had extra code that it was running to keep checking if at any point 
+    list was in order and it could stop. 
 
 2) The first 3 sorts have the same runtime of O(n^2). Why were the times different? Why would one be more efficient than the others?
-
+    - bubbleSort and bubbleSortEarlyExit gave pretty similar times with the exception of the orderd list. This would make sense 
+    because the early exit is essentially the same thing as the bubbleSort with the exception to how it treats an list that is 
+    already ordered. On the other hand, selection sort seems to work much different. Since selection sort looks through all the 
+    unsorted numbers whenever it is making a swap, it would make sense that it would get quicker and quicker as it moves closer 
+    to being done. Each pass through that bubblesort makes would also be shorter, but it seems like selection sort would be 
+    essentially accelerating the longer it runs. 
 
 3) Why was merge sort so much more efficient?
-
+    - I think that merge sort is so efficient because most of the work is done with smaller lists. It breaks up the giant list
+    into smaller ones, and most of the sorting is done while the lists are still small. By the time that lists are getting bigger
+    and there are multiple large lists being merged into eachother, these large lists are already sorted. So merging together the
+    large lists is straight forward, and it is just a matter of comparing two numbers. Unlike bubble sort which also compares just
+    two numbers. When merge sort compares two numbers to put them into a new list. These numbers are going into their final spot
+    in that list. If you the biggest number at the very start of the list, like in reversed order, with the bubble sort you would
+    have to switch this number one at a time for however long the list is. Merge sort would change this numbers position by twice
+    the distance every move instead of just one at a time. 
 
 4) The built-in sorting technique for most programming languages is known as TimSort.
 This is a merge sort until the arrays have fewer than 10 elements, then it does an insertion sort. Why would this be useful?
-
+    - It looks like merge sort works very efficiently when it is merging together two large lists. It is likely not a good use
+    of its effeciency to make it break lists down from 8 to 4 to 2 to 1 numbers. Something like insertion sort seems to be optimal
+    for small lists, so by using these two methods together you get the best of both worlds. Merge sort breaks the list down into
+    small lists of ten or less elements, then insertion sort qucikly sorts the small lists. Then merge sort merges the sorted,
+    smaller lists back into larger and larger lists. 
 
 5) What issues can you see with a recursive sorting technique like merge sort?
+    - When merge sort is sorting, it does so by making new, temporary lists. Some of the other methods like bubbleSort just worked 
+    on the list. On a larger list, merge sort could make thousands of new lists that would have to take up space somwehere for 
+    just a moment. I don't know what type of storage this would use.
+    - Also another problem as mentioned in question 4 is that because of how complex it is relative to the other methods, merge
+    sort is a bit overkill for smaller lists, and would therefore take longer to sort these. 
+    - Another thing is that since it is a more complex method, it might make it more annoying to use in a larger program. It would
+    be difficult to work with if you have to constantly de-bug something that you can't really wrap your head around. 
